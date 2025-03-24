@@ -16,7 +16,6 @@ export default function CartPage() {
   const { items, updateQuantity, removeItem, clearCart, totalPrice } = useCartStore()
   const [mounted, setMounted] = useState(false)
 
-  // Hydration fix for server/client mismatch with localStorage
   useEffect(() => {
     setMounted(true)
   }, [])

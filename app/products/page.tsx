@@ -1,12 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback, SetStateAction } from "react"
-import { useSearchParams } from "next/navigation"
 import Image from "next/image"
 import { Star } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
 import ColorSelector from "@/components/color-selector"
 import { Pagination } from "@/components/pagination"
 import { useQueries } from "@tanstack/react-query"
@@ -17,7 +15,6 @@ import Link from "next/link"
 
 
 export default function ProductsPage() {
-  const searchParams = useSearchParams()
   const [page, setPage] = useState(1)
   const [sort, setSort] = useState("asc")
   const [category, setCategory] = useState("all")
@@ -99,25 +96,19 @@ export default function ProductsPage() {
           <div className="sticky top-24 space-y-6">
             <h2 className="text-lg font-bold">Filters</h2>
 
-            
-
-            
-
-            
-
             {/* Category Filter */}
             <div>
               <h3 className="font-medium mb-2">Categories</h3>
-             <div className="mb-2">
-             <Checkbox
-                id={`all`}
-                checked={category === "all"}
-                onCheckedChange={() => setCategory("all")}
-              />
-              <Label htmlFor={`all`} className="ml-2 text-sm">
-                {"All"}
-              </Label>
-             </div>
+              <div className="mb-2">
+                <Checkbox
+                  id={`all`}
+                  checked={category === "all"}
+                  onCheckedChange={() => setCategory("all")}
+                />
+                <Label htmlFor={`all`} className="ml-2 text-sm">
+                  {"All"}
+                </Label>
+              </div>
               <div className="space-y-2">
                 {categoriesList?.map((cat: string) => (
                   <div key={cat} className="flex items-center">

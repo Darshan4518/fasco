@@ -91,6 +91,7 @@ export default function Home() {
         </div>
       </section>
 
+
       {/* Brand Slider */}
       <section className="w-full py-8 border-t border-b">
         <div className="container px-4 md:px-6">
@@ -114,8 +115,8 @@ export default function Home() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {deals?.products?.map((deal:any) => (
-                  <div key={deal.id} className="group relative overflow-hidden">
+                {deals?.products?.map((deal: any) => (
+                  <Link href={`/products/${deal.id}`} key={deal.id} className="group relative overflow-hidden">
                     <div className="aspect-[3/4] bg-gray-100 relative overflow-hidden">
                       <Image
                         src={deal?.thumbnail || "/placeholder.svg"}
@@ -134,7 +135,7 @@ export default function Home() {
                         <span className="font-semibold">${deal?.price}</span>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </>
@@ -161,15 +162,17 @@ export default function Home() {
             <p className="text-red-500">Error fetching new arrivals!</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {newProducts?.products.map((product:any) => (
+              {newProducts?.products.map((product: any) => (
+               <Link href={`/products/${product?.id}`} key={product?.id}  >
                 <ProductCard
-                  key={product.id}
+                  key={product?.id}
                   image={product?.thumbnail || "/placeholder.svg"}
                   title={product?.title}
                   price={product?.price}
                   rating={product?.rating || 4}
                   reviewCount={product?.reviews?.length || 0}
                 />
+               </Link>
               ))}
             </div>
           )}
@@ -177,6 +180,31 @@ export default function Home() {
             <Button className="rounded-none bg-black hover:bg-gray-800 text-white px-8">VIEW ALL</Button>
           </Link>
         </div>
+      </section>
+
+
+      <section className=" space-y-5">
+        <Image
+          src="/slider.png"
+          alt="Models in casual wear"
+          width={800}
+          height={300}
+          className="object-cover w-full h-full"
+        />
+           <Image
+          src="/gallery.png"
+          alt="Models in casual wear"
+          width={800}
+          height={300}
+          className="object-cover w-full h-full"
+        />
+        <Image
+          src="/testimonials.png"
+          alt="Models in casual wear"
+          width={800}
+          height={300}
+          className="object-cover w-full h-full"
+        />
       </section>
 
       {/* Newsletter */}

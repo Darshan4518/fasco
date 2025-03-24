@@ -1,10 +1,9 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import type { Product } from "./api"
 
 interface CartState {
-  items: Product[]
-  addItem: (product: Product) => void
+  items: any[]
+  addItem: (product: any) => void
   updateQuantity: (productId: string | number, quantity: number) => void
   removeItem: (productId: string | number) => void
   clearCart: () => void
@@ -16,7 +15,6 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
-
       addItem: (product) => {
         set((state) => {
           const existingItem = state.items.find(
@@ -77,40 +75,6 @@ export const useCartStore = create<CartState>()(
   ),
 )
 
-interface WishlistState {
-  items: Product[]
-  addItem: (product: Product) => void
-  removeItem: (productId: string | number) => void
-  isInWishlist: (productId: string | number) => boolean
-}
 
-export const useWishlistStore = create<WishlistState>()(
-  persist(
-    (set, get) => ({
-      items: [],
 
-      addItem: (product) => {
-        set((state) => {
-          if (state.items.some((item) => item.id === product.id)) {
-            return state
-          }
-          return { items: [...state.items, product] }
-        })
-      },
-
-      removeItem: (productId) => {
-        set((state) => ({
-          items: state.items.filter((item) => item.id !== productId),
-        }))
-      },
-
-      isInWishlist: (productId) => {
-        return get().items.some((item) => item.id === productId)
-      },
-    }),
-    {
-      name: "wishlist-storage",
-    },
-  ),
-)
 

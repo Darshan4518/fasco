@@ -13,7 +13,7 @@ export default function SearchBar({ defaultValue = "" }) {
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState(defaultValue)
 
-  const handleSearch = (e) => {
+  const handleSearch = (e:any) => {
     e.preventDefault()
 
     const params = new URLSearchParams(searchParams)

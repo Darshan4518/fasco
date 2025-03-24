@@ -14,12 +14,14 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "FASCO - Fashion E-commerce",
   description: "Modern fashion e-commerce store",
-    generator: 'v0.dev'
 }
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" 
+    suppressHydrationWarning
+    >
       <body className={inter.className}>
         <Providers>
           <div className="flex min-h-screen flex-col">
@@ -28,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center gap-2 md:gap-4">
                     <Sheet>
+                    
                       <SheetTrigger asChild>
                         <Button variant="ghost" size="icon" className="md:hidden">
                           <Menu className="h-5 w-5" />
@@ -63,22 +66,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   
                   </nav>
                   <div className="flex items-center gap-4">
+                    <div className=" hidden md:block">
                     <SearchBar/>
+                    </div>
+                    <Link href={"/auth"}>
                     <Button variant="ghost" size="icon">
                       <User className="h-5 w-5" />
                       <span className="sr-only">Account</span>
                     </Button>
-                    <Button variant="ghost" size="icon">
-                      <Heart className="h-5 w-5" />
-                      <span className="sr-only">Wishlist</span>
-                    </Button>
+                    </Link>
+                   
                     <Link href="/cart">
                       <Button variant="ghost" size="icon" className="relative">
                         <ShoppingBag className="h-5 w-5" />
                         <span className="sr-only">Cart</span>
-                        <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-medium text-white">
-                          0
-                        </span>
+                       
                       </Button>
                     </Link>
                   </div>
