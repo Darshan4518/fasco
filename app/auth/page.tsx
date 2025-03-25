@@ -1,9 +1,13 @@
 "use client"
+import Router from 'next/router';
 import { useState } from 'react';
 
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
+const handleSubmit=()=>{
+Router.push("/")   
+}
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
@@ -21,7 +25,7 @@ export default function Auth() {
               <h2 className="mb-4 text-3xl font-bold text-gray-800">Welcome Back!</h2>
               <p className="mb-6 text-sm text-gray-600">Sign in to your account</p>
 
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Email</label>
                   <input
@@ -63,7 +67,7 @@ export default function Auth() {
               <h2 className="mb-4 text-3xl font-bold text-gray-800">Create Your Account</h2>
               <p className="mb-6 text-sm text-gray-600">Join us today!</p>
 
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Full Name</label>
                   <input
