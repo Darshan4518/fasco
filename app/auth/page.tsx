@@ -1,13 +1,15 @@
 "use client"
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
-const handleSubmit=()=>{
-Router.push("/")   
-}
+  const navigate=useRouter()
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    navigate.push("/")
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">

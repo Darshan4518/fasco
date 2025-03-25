@@ -3,7 +3,6 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import CountdownTimer from "@/components/countdown-timer"
 import BrandSlider from "@/components/brand-slider"
-import ProductCard from "@/components/product-card"
 import { useQueries } from "@tanstack/react-query"
 import Link from "next/link"
 
@@ -163,16 +162,26 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {newProducts?.products.map((product: any) => (
-               <Link href={`/products/${product?.id}`} key={product?.id}  >
-                <ProductCard
-                  key={product?.id}
-                  image={product?.thumbnail || "/placeholder.svg"}
-                  title={product?.title}
-                  price={product?.price}
-                  rating={product?.rating || 4}
-                  reviewCount={product?.reviews?.length || 0}
-                />
-               </Link>
+               <Link href={`/products/${product.id}`} key={product.id} className="group relative overflow-hidden">
+               <div className="aspect-[3/4] bg-gray-100 relative overflow-hidden">
+                 <Image
+                   src={product?.thumbnail || "/placeholder.svg"}
+                   alt={product?.title || "Deal"}
+                   width={450}
+                   height={600}
+                   className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                 />
+                 <div className="absolute top-4 left-4 bg-black text-white text-xs px-2 py-1">
+                   {product?.discountPercentage ? `${product.discountPercentage}% OFF` : "25% OFF"}
+                 </div>
+               </div>
+               <div className="mt-4">
+                 <h3 className="font-medium">{product?.title}</h3>
+                 <div className="flex items-center mt-1">
+                   <span className="font-semibold">${product?.price}</span>
+                 </div>
+               </div>
+             </Link>
               ))}
             </div>
           )}
